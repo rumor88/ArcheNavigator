@@ -131,22 +131,6 @@
       font-weight: 800;
     }
 
-    .readout {
-      margin-top: 14px;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 248, 222, 0.045);
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-      word-break: keep-all;
-    }
-
-    .readout strong {
-      color: var(--text);
-    }
-
     .leaflet-control-zoom a {
       background-color: #f4e6c7 !important;
       border: 1px solid #8b7355 !important;
@@ -217,9 +201,6 @@
       <button id="placeMarker" type="button">마커 표시</button>
     </div>
 
-    <div class="readout" id="readout">
-      지도 위를 누르거나 좌표를 입력하면 위치가 표시됩니다.
-    </div>
   </section>
 
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -334,10 +315,6 @@
         latCoord.dir + " " + latCoord.dms.deg + "° " + latCoord.dms.min + "' " + formatSeconds(latCoord.dms.sec) + "\"";
     }
 
-    function setReadout(text) {
-      byId("readout").textContent = text;
-    }
-
     function setMarker(lat, lng, shouldPan) {
       if (!marker) {
         marker = L.marker([lat, lng]).addTo(map);
@@ -353,7 +330,6 @@
       var lngCoord = lngToCoord(lng);
       writeInputs(latCoord, lngCoord);
       marker.bindPopup(coordText(latCoord, lngCoord)).openPopup();
-      setReadout("표시 좌표: " + coordText(latCoord, lngCoord));
     }
 
     function placeMarkerFromInputs() {
